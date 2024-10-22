@@ -1,18 +1,18 @@
-const express = require('express');
+require('dotenv').config();
 const path = require('path');
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
 const app = express();
 const port = 3001;
 
-// Configurar la conexión a PostgreSQL
+// Configurar la conexión a PostgreSQL con DOTENV
 const pool = new Pool({
-    user: 'postgres', // reemplaza con tu usuario de PostgreSQL
-    host: 'localhost',
-    database: 'ticketon',
-    password: 'Dyehuty.1024', // reemplaza con tu contraseña de PostgreSQL
-    port: 5432,
-});
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+  });
 
 // Middleware para parsear JSON
 app.use(express.json());
