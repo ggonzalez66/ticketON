@@ -8,7 +8,7 @@ const TicketForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch('/tickets', {
+    const response = await fetch('/api/tickets', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

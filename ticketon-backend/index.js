@@ -1,5 +1,6 @@
 require('dotenv').config();
 const path = require('path');
+const cors = require('cors');
 const express = require('express');
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
@@ -13,7 +14,15 @@ const pool = new Pool({
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
-  });
+});
+
+const corsOptions = {
+    origin: 'http://gg-66.com', // Cambia a tu dominio
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Middleware para parsear JSON
 app.use(express.json());
@@ -26,7 +35,7 @@ app.get('/', (req, res) => {
 });
 
 // Ruta para crear un ticket con validaciones
-app.post('/tickets', async (req, res) => {
+app.post('/api/tickets', async (req, res) => {
     if (req.headers['content-type'] !== 'application/json') {
         return res.status(400).send('Content-Type must be application/json');
     }
@@ -69,7 +78,7 @@ app.post('/tickets', async (req, res) => {
 });
 
 // Ruta para registrar un nuevo usuario
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
@@ -95,7 +104,7 @@ app.post('/register', async (req, res) => {
 });
 
 // Ruta para login de usuario
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
