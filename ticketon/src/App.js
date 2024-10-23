@@ -8,6 +8,9 @@ function App() {
     return (
         <Router>
             <div className="App">
+	    	<h1 style={{ textAlign: 'center', fontSize: '3em', marginTop: '20px' }}>
+	    Bienvenido a mi Aplicacion React GG
+        	</h1>
                 <nav>
                     <ul>
                         <li>

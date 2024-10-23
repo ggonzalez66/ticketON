@@ -37,7 +37,7 @@ const TicketForm = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea><br /><br />
-        <button type="submit">Submit</button>
+        <button type="submit" >Submit</button>
       </form>
       {response && (
         <div dangerouslySetInnerHTML={{ __html: response }} />
